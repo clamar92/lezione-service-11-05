@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath(
 
 
 @pytest.fixture
-def client():
+def app_context():
     config = {"SQLALCHEMY_DATABASE_URI": os.environ.get("DATABASE_URL"),
               "SQLALCHEMY_TRACK_MODIFICATIONS": False}
     app = create_app(config)
