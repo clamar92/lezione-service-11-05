@@ -9,6 +9,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: docker-repository
 
     steps:
       - name: Checkout codice
@@ -33,6 +34,12 @@ jobs:
 
       - name: Esegui i test
         run: docker-compose -f docker-compose.yml exec microservizio pytest
+
+      - name: Docker build
+        run: docker build -t username/nomecontainer:$GITHUB_SHA .
+
+      - name: Docker push
+        run: docker push username/nomecontainer:$GITHUB_SHA
 
       - name: Cleanup finale
         run: docker-compose -f docker-compose.yml down -v
