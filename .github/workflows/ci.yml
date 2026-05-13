@@ -44,4 +44,3 @@ jobs:
       - name: Cleanup finale
         run: docker-compose -f docker-compose.yml down -v
 
-
